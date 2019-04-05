@@ -504,7 +504,11 @@ const expectedListOutput = `
 	"staging": ["192.168.0.3"],
 	"status_superserver": ["10.120.0.226"],
 	"database": ["10.0.0.8"],
-	"scw_test": ["10.0.0.11"]
+	"scw_test": ["10.0.0.11"],
+	"tag_Role_test": ["10.0.0.10"],
+	"tag_Role_worker": ["50.0.0.17"],
+	"tag_status_superServer": ["10.120.0.226"],
+	"tag_Role_Web": ["10.0.0.1"]
 }
 `
 
@@ -631,6 +635,18 @@ olddatacenter="\u003c0.7_format"
 192.168.0.3
 
 [status_superserver]
+10.120.0.226
+
+[tag_Role_Web]
+10.0.0.1
+
+[tag_Role_test]
+10.0.0.10
+
+[tag_Role_worker]
+50.0.0.17
+
+[tag_status_superServer]
 10.120.0.226
 
 [ten]

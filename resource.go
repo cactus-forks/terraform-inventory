@@ -16,16 +16,16 @@ var nameParser *regexp.Regexp
 
 func init() {
 	keyNames = []string{
-		"ipv4_address",                     // DO and SoftLayer
-		"public_ip",                        // AWS
-		"public_ipv6",                      // Scaleway
-		"private_ip",                       // AWS
-		"ipaddress",                        // CS
-		"ip_address",                       // VMware, Docker
-		"network_interface.0.ipv4_address", // VMware
-		"default_ip_address",               // provider.vsphere v1.1.1
-		"access_ip_v4",                     // OpenStack
-		"floating_ip",                      // OpenStack
+		"ipv4_address",                                        // DO and SoftLayer
+		"public_ip",                                           // AWS
+		"public_ipv6",                                         // Scaleway
+		"private_ip",                                          // AWS
+		"ipaddress",                                           // CS
+		"ip_address",                                          // VMware, Docker
+		"network_interface.0.ipv4_address",                    // VMware
+		"default_ip_address",                                  // provider.vsphere v1.1.1
+		"access_ip_v4",                                        // OpenStack
+		"floating_ip",                                         // OpenStack
 		"network_interface.0.access_config.0.nat_ip",          // GCE
 		"network_interface.0.access_config.0.assigned_nat_ip", // GCE
 		"network_interface.0.address",                         // GCE
@@ -110,6 +110,9 @@ func (r Resource) Tags() map[string]string {
 				kk := strings.ToLower(parts[1])
 				vv := strings.ToLower(v)
 				t[kk] = vv
+
+				// also add tag_X_Y format for ansible tower compat
+				t["tag_"+parts[1]] = v
 			}
 		}
 	case "aws_instance":
@@ -122,6 +125,9 @@ func (r Resource) Tags() map[string]string {
 				kk := strings.ToLower(parts[1])
 				vv := strings.ToLower(v)
 				t[kk] = vv
+
+				// also add tag_X_Y format for ansible tower compat
+				t["tag_"+parts[1]] = v
 			}
 		}
 	case "aws_spot_instance_request":
@@ -134,6 +140,9 @@ func (r Resource) Tags() map[string]string {
 				kk := strings.ToLower(parts[1])
 				vv := strings.ToLower(v)
 				t[kk] = vv
+
+				// also add tag_X_Y format for ansible tower compat
+				t["tag_"+parts[1]] = v
 			}
 		}
 	case "vsphere_virtual_machine":
@@ -166,6 +175,9 @@ func (r Resource) Tags() map[string]string {
 				kk := strings.ToLower(parts[1])
 				vv := strings.ToLower(v)
 				t[kk] = vv
+
+				// also add tag_X_Y format for ansible tower compat
+				t["tag_"+parts[1]] = v
 			}
 		}
 	}
